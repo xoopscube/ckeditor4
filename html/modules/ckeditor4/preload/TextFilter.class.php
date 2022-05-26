@@ -1,11 +1,16 @@
 <?php
 /**
- * @file
- * @package ckeditor4
- * @version $Id$
+ * CKEditor4 module for XCL
+ * @package    CKEditor4
+ * @version    2.3.1
+ * @author     Naoki Sawada (aka nao-pon) https://xoops.hypweb.net/
+ * @copyright  2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+	exit();
+}
 
 class ckeditor4_TextFilter extends XCube_ActionFilter
 {
@@ -16,29 +21,29 @@ class ckeditor4_TextFilter extends XCube_ActionFilter
 	{
 		$this->mRoot->mDelegateManager->add('Legacy_TextFilter.MakeXCodeConvertTable', array(&$this, 'filter'));
 	}
-	
+
 	function filter(&$patterns, &$replacements)
 	{
 		$allow_callback = (function_exists('property_exists') && class_exists('Legacy_TextFilter') && property_exists('Legacy_TextFilter', 'mXCodeCallbacks'));
-		
+
 		// <!--ckeditor4FlgSource-->
 		$patterns[] = '/&lt;!--ckeditor4FlgSource--&gt;/';
 		$replacements[0][] =
 		$replacements[1][] = '';
-		
+
 		// [img align=left title=hoge width=10 height=10]
 		$patterns[] = '/\[img(?:\s+align=(&quot;|&#039;)?(left|center|right)(?(1)\1))?(?:\s+title=(&quot;|&#039;)?((?(3)[^]]*|[^\]\s]*))(?(3)\3))?(?:\s+w(?:idth)?=(&quot;|&#039;)?([\d]+?)(?(5)\5))?(?:\s+h(?:eight)?=(&quot;|&#039;)?([\d]+?)(?(7)\7))?]([!~*\'();\/?:\@&=+\$,%#\w.-]+)\[\/img\]/US';
 		$replacements[0][] = '<a href="$9" title="$4" target="_blank">$9</a>';
-		$replacements[1][] = '<img src="$9" align="$2" width="$6" height="$8" alt="$4" title="$4" />';
+		$replacements[1][] = '<img src="$9" align="$2" width="$6" height="$8" alt="$4" title="$4">';
 
 		// [siteimg align=left title=hoge width=10 height=10]
 		$patterns[] = '/\[siteimg(?:\s+align=(&quot;|&#039;)?(left|center|right)(?(1)\1))?(?:\s+title=(&quot;|&#039;)?((?(3)[^]]*|[^\]\s]*))(?(3)\3))?(?:\s+w(?:idth)?=(&quot;|&#039;)?([\d]+?)(?(5)\5))?(?:\s+h(?:eight)?=(&quot;|&#039;)?([\d]+?)(?(7)\7))?]([!~*\'();\/?:\@&=+\$,%#\w.-]+)\[\/siteimg\]/US';
-		$replacements[0][] = 
-		$replacements[1][] = '<img src="'.XOOPS_URL.'/$9" align="$2" width="$6" height="$8" alt="$4" title="$4" />';
+		$replacements[0][] =
+		$replacements[1][] = '<img src="'.XOOPS_URL.'/$9" align="$2" width="$6" height="$8" alt="$4" title="$4">';
 
 		// [pagebreak]
 		$patterns[] = '/\[pagebreak\]/';
-		$replacements[0][] = 
+		$replacements[0][] =
 		$replacements[1][] = '<div style="page-break-after: always;"><span style="display: none;">&nbsp;</span></div>';
 
 		// [list] nested allow
@@ -65,7 +70,7 @@ class ckeditor4_TextFilter extends XCube_ActionFilter
 		$patterns[] = '/\x02(?:\r\n|[\r\n])/';
 		$replacements[0][] = $replacements[1][] = '</ul></li>';
 	}
-	
+
 	static public function get_list_tag($m) {
 		switch($m[1]) {
 			case '1':
@@ -111,5 +116,3 @@ class ckeditor4_TextFilter extends XCube_ActionFilter
 		return '<'.$tag.$style.'>' . $m[2] . '</'.$tag.'>';
 	}
 }
-
-?>

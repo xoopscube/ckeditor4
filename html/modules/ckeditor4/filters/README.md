@@ -1,6 +1,6 @@
 # filters
 
-The filter for XOOPS other than XCL (XOOPS Cube Legacy)
+The filter for XOOPS other than XCL (XOOPSCube Legacy)
 
 ## config
 
@@ -14,7 +14,7 @@ On the point here, "$params" given before interpreting "$params" can be changed.
 class ckeditor4FilterConfigPreBuildConfig[NAME]
 {
 	public function filter(& $params) {
-	
+
 	}
 }
 ```
@@ -27,7 +27,7 @@ On the point here, a rated value can be given, before assembling "ckeditor.confi
 class ckeditor4FilterConfigPreParseBuild[NAME]
 {
 	public function filter(& $config, $params) {
-	
+
 	}
 }
 ```
@@ -40,7 +40,7 @@ On the point here, assembled "ckeditor.config" can be overwritten.
 class ckeditor4FilterConfigPostBuild[NAME]
 {
 	public function filter(& $config, $params) {
-	
+
 	}
 }
 ```

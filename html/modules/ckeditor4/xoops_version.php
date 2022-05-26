@@ -1,44 +1,40 @@
 <?php
 /**
- * @file
- * @package ckeditor4
- * @version $Id$
+ * CKEditor4 module for XCL
+ * @package    CKEditor4
+ * @version    2.3.1
+ * @author     Other authors Nuno Luciano (aka gigamaster), 2020, XCL PHP7
+ * @author     Naoki Sawada (aka nao-pon) <https://xoops.hypweb.net/>
+ * @copyright  2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
  */
 
-if (!defined('XOOPS_ROOT_PATH')) exit();
+if (!defined('XOOPS_ROOT_PATH')) {
+	exit();
+}
 
-//
-// Define a basic manifesto.
-//
-$modversion['name'] = _MI_CKEDITOR4_LANG_CKEDITOR4;
-$modversion['version'] = 0.73;
-$modversion['description'] = _MI_CKEDITOR4_DESC_CKEDITOR4 . ' (CKEditor 4.7.3 Full version + Upload Image plugin)';
-$modversion['author'] = "nao-pon http://xoops.hypweb.net/";
-$modversion['credits'] = "Naoki Sawada aka nao-pon";
-$modversion['help'] = "help.html";
-$modversion['license'] = "GPL";
-$modversion['official'] = 0;
-$modversion['image'] = "images/mydhtml.png";
-$modversion['dirname'] = "ckeditor4";
+// Manifesto.
+$modversion['dirname']      = "ckeditor4";
+$modversion['name']         = _MI_CKEDITOR4_LANG_CKEDITOR4;
+$modversion['version']      = '4.19.0';
+$modversion['description']  = 'v4.19.0 [ 2021-05-25 ] '._MI_CKEDITOR4_DESC_CKEDITOR4;
+$modversion['author']       = "Naoki Sawada (aka nao-pon) https://xoops.hypweb.net";
+$modversion['credits']      = "Naoki Sawada (aka nao-pon). Nuno Luciano (aka gigamaster) XCL PHP7 ";
+$modversion['license']      = "GPL";
+$modversion['image']        = "images/module_ckeditor.svg";
+$modversion['icon']         = 'images/module_icon.svg';
+$modversion['help']         = "help.html";
+$modversion['official']     = 0;
+$modversion['cube_style']   = true;
 
-$modversion['cube_style'] = true;
 $modversion['disable_legacy_2nd_installer'] = false;
 
-// TODO After you made your SQL, remove the following comment-out.
-// $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
-##[cubson:tables]
-##[/cubson:tables]
 
-//
-// Templates. You must never change [cubson] chunk to get the help of cubson.
-//
+// Templates
 $modversion['templates'][]['file'] = 'ckeditor4_textarea.html';
-##[cubson:templates]
-##[/cubson:templates]
 
-//
+
 // Admin panel setting
-//
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "admin/index.php";
 $modversion['adminmenu'] = "admin/menu.php";
@@ -67,6 +63,15 @@ $modversion['config'][] = array(
 		'formtype'		=> 'textarea' ,
 		'valuetype'		=> 'string' ,
 		'default'		=> 'Full'
+)
+
+;$modversion['config'][] = array(
+        'name'			=> 'uiColor' ,
+        'title'			=> '_MI_CKEDITOR4_TOOLBAR_UI_COLOR',
+        'description'	=> '_MI_CKEDITOR4_TOOLBAR_UI_COLOR_DESC',
+        'formtype'		=> 'color' ,
+        'valuetype'		=> 'string' ,
+        'default'		=> '#405060'
 ) ;
 
 $modversion['config'][] = array(
@@ -93,7 +98,7 @@ $modversion['config'][] = array(
 		'description'	=> '_MI_CKEDITOR4_TOOLBAR_USER_DESC',
 		'formtype'		=> 'textarea' ,
 		'valuetype'		=> 'string' ,
-		'default'		=> '[["PasteText","-","Undo","Redo" ],["Bold","Italic","Underline","Strike","-","TextColor","-","RemoveFormat","FontSize"],["NumberedList","BulletedList","Outdent","Indent","Blockquote"],["Link","Image","Smiley","PageBreak"],["Maximize", "ShowBlocks","-","About"]]'
+		'default'		=> '[["PasteText","-","Undo","Redo" ],["Bold","Italic","Underline","Strike","-","TextColor","-","RemoveFormat","FontSize"],["NumberedList","BulletedList","Outdent","Indent","Blockquote"],["Link","Image","Smiley","PageBreak"],["Maximize", "ShowBlocks","-","CodeSnippet"]]'
 ) ;
 
 $modversion['config'][] = array(
@@ -102,7 +107,7 @@ $modversion['config'][] = array(
 		'description'	=> '_MI_CKEDITOR4_TOOLBAR_GUEST_DESC',
 		'formtype'		=> 'textarea' ,
 		'valuetype'		=> 'string' ,
-		'default'		=> '[["PasteText","-","Undo","Redo" ],["Bold","Italic","Underline","Strike","-","TextColor","-","RemoveFormat","FontSize"],["NumberedList","BulletedList","Outdent","Indent","Blockquote"],["Link","Image","Smiley","PageBreak"],["Maximize", "ShowBlocks","-","About"]]'
+		'default'		=> '[["PasteText","-","Undo","Redo" ],["Bold","Italic","Underline","Strike","-","TextColor","-","RemoveFormat","FontSize"],["NumberedList","BulletedList","Outdent","Indent","Blockquote"],["Link","Image","Smiley","PageBreak"],["Maximize", "ShowBlocks"]]'
 ) ;
 
 $modversion['config'][] = array(
@@ -138,7 +143,7 @@ $modversion['config'][] = array(
 		'description'	=> '_MI_CKEDITOR4_CUSTOMCONFIG_DESC',
 		'formtype'		=> 'textbox' ,
 		'valuetype'		=> 'string' ,
-		'default'		=> ''
+		'default'		=> 'config.js'
 ) ;
 
 $modversion['config'][] = array(
@@ -207,4 +212,3 @@ $modversion['config'][] = array(
 ) ;
 
 $modversion['onUpdate'] = 'admin/onupdate.inc.php';
-?>

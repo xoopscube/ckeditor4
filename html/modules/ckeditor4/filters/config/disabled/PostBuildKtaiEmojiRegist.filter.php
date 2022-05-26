@@ -1,20 +1,32 @@
 <?php
+/**
+ * CKEditor4 module for XCL
+ * @package    CKEditor4
+ * @version    2.3.1
+ * @author     Naoki Sawada (aka nao-pon) <https://xoops.hypweb.net/>
+ * @copyright  2005-2022 The XOOPSCube Project
+ * @license    GPL 2.0
+ */
 
-if ( !defined('XOOPS_ROOT_PATH') ) exit;
+if ( !defined('XOOPS_ROOT_PATH') ) {
+	exit;
+}
 
 class ckeditor4FilterConfigPostBuildKtaiEmojiRegist
 {
 	private $emj2i_table;
-	
+
 	public function filter(&$config) {
 		$emj2i = XOOPS_TRUST_PATH . '/class/hyp_common/mpc/Carrier/map/emj2i_table.php';
-		
-		if (! is_readable($emj2i)) return;
-		
+
+		if (! is_readable($emj2i)) {
+			return;
+		}
+
 		if (empty($this->emj2i_table)) {
 			require XOOPS_TRUST_PATH . '/class/hyp_common/mpc/Carrier/map/emj2i_table.php';
 		}
-		
+
 		$emj_list = array(
 			140,141,142,143,144,1021,1022,1023,1024,1025,1026,1027,1029,1030,1031,1032,
 			1033,1034,1035,1071,1072,1076,145,156,150,151,152,157,158,162,163,164,
@@ -30,11 +42,11 @@ class ckeditor4FilterConfigPostBuildKtaiEmojiRegist
 			1065,77,79,91,92,1003,1005,1016,1015,1008,167,176,95,96,97,98,
 			30,31,32,33,34,35,36,37,1018,102
 		);
-		
+
 		$emj_path = 'images/emoji/i/';
-		
+
 		$img = $emo = $map = array();
-		
+
 		$emj2i_table = $this->emj2i_table;
 		foreach($emj_list as $n) {
 			if (isset($emj2i_table[$n])) {
@@ -44,7 +56,7 @@ class ckeditor4FilterConfigPostBuildKtaiEmojiRegist
 				$map[$str] = $str;
 			}
 		}
-		
+
 		$config['smiley_images'] = array_merge($config['smiley_images'], $img);
 		$config['smiley_descriptions'] = array_merge($config['smiley_descriptions'], $emo);
 		$config['xoopscode_smileyMap'] = array_merge($config['xoopscode_smileyMap'], $map);

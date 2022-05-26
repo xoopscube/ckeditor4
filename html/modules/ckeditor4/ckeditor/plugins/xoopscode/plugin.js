@@ -1,6 +1,6 @@
 /**
  * @license Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.html or http://ckeditor.com/license
+ * For licensing, see LICENSE.html or https:///ckeditor.com/license
  */
 
 (function() {
@@ -37,11 +37,11 @@
 		listTypeMap = { a: 'lower-alpha', A: 'upper-alpha', r: 'lower-roman', R: 'upper-roman', d: 'decimal', D: 'disc', C: 'circle', S: 'square' },
 		listTypeReverseMap = {},
 		listTypeTag = { 'lower-alpha': 'ol', 'upper-alpha': 'ol', 'lower-roman': 'ol', 'upper-roman': 'ol', 'decimal': 'ol', 'disc': 'ul', 'circle': 'ul', 'square': 'ul' };
-	
+
 	for ( var i in listTypeMap ) {
 		listTypeReverseMap[ listTypeMap[ i ] ] = i;
 	}
-	
+
 	// List of block-like tags.
 	var dtd = CKEDITOR.dtd,
 		blockLikeTags = CKEDITOR.tools.extend( { table:1 }, dtd.$block, dtd.$listItem, dtd.$tableContent, dtd.$list );
@@ -188,7 +188,7 @@
 						attribs[ 'bbcode' ] = part;
 
 					this.onTagOpen( tagName, attribs, CKEDITOR.dtd.$empty[ tagName ] );
-					
+
 					if ( part == 'pagebreak') {
 						this.onTagClose( bbcodeMap[ part ], part );
 					}
@@ -523,17 +523,17 @@
 				if ( tag in bbcodeMap ) {
 					if ( this.getRule( tag, 'breakBeforeOpen' ) )
 						this.lineBreak( 1 );
-					
+
 					if (!!this._.opentags['tag:'+tag] && this._.opentags['tag:'+tag].length > 0)
 						this.write( '[/', tag, ']' );
-					
+
 					this.write( '[', tag );
 					var option = attributes.option;
 					option && this.write( '=', option );
 					var extra = attributes.extra;
 					extra && this.write( extra );
 					this.write( ']' );
-					
+
 					if (tag != 'list' && tag != '*') {
 						if (! this._.opentags['tag:'+tag])
 							this._.opentags['tag:'+tag] = [];
@@ -555,7 +555,7 @@
 						this.lineBreak( 1 );
 
 					tag != '*' && tag != 'pagebreak' && this.write( '[/', tag, ']' );
-					
+
 					if (!!this._.opentags['tag:'+tag]) {
 						this._.opentags['tag:'+tag].shift();
 						if (this._.opentags['tag:'+tag].length > 0) {
@@ -567,7 +567,7 @@
 							this.write( ']' );
 						}
 					}
-							
+
 
 					if ( this.getRule( tag, 'breakAfterClose' ) )
 						this.lineBreak( 1 );
@@ -708,7 +708,7 @@
 						delete element.attributes.listType;
 					},
 					a: function( element ) {
-						if ( !element.attributes.href ) 
+						if ( !element.attributes.href )
 							element.attributes.href = element.children[ 0 ].value;
 						if (element.attributes.bbcode == 'siteurl') {
 							element.attributes.href = xoops_root + element.attributes.href;
@@ -771,7 +771,7 @@
 							}
 						} else if ( tagName == 'ol' || tagName == 'ul' ) {
 							if ( ( value = style[ 'list-style-type' ] ) ) {
-								if (listTypeReverseMap[ value ]) 
+								if (listTypeReverseMap[ value ])
 									value = listTypeReverseMap[ value ];
 							} else if ( tagName == 'ol' )
 								value = 1;
@@ -814,7 +814,7 @@
 									if (value.match(config.xoopscodeXoopsUrl)) {
 										value = value.replace(config.xoopscodeXoopsUrl, '');
 										tagName = 'siteurl';
-									} else 
+									} else
 
 									tagName = 'url';
 								}
@@ -863,7 +863,7 @@
 									extra += ' width=' + extraValue;
 								if (extraValue = parseInt(attributes.height || style[ 'height' ]))
 									extra += ' height=' + extraValue;
-								
+
 								if ( extra )
 									attributes.extra = extra;
 							}
@@ -883,7 +883,7 @@
 					},
 
 					// Remove any bogus br from the end of a pseudo block,
-					// e.g. <div>some text<br /><p>paragraph</p></div>
+					// e.g. <div>some text<br><p>paragraph</p></div>
 					br: function( element ) {
 						var next = element.next;
 						if ( next && next.name in blockLikeTags )

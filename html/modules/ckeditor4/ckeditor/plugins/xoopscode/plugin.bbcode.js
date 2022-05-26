@@ -1,6 +1,6 @@
 ﻿/**
  * @license Copyright (c) 2003-2012, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.html or http://ckeditor.com/license
+ * For licensing, see LICENSE.html or https://ckeditor.com/license
  */
 
 (function() {
@@ -716,7 +716,7 @@
 					},
 
 					// Remove any bogus br from the end of a pseudo block,
-					// e.g. <div>some text<br /><p>paragraph</p></div>
+					// e.g. <div>some text<br><p>paragraph</p></div>
 					br: function( element ) {
 						var next = element.next;
 						if ( next && next.name in blockLikeTags )
