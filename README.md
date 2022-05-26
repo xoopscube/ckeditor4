@@ -49,6 +49,8 @@ Automatic ToolBar switching based on modules and user group permissions.
 
 ## Control Panel Preferences
 
+
+
 CKEditor's settings :   
 
 - Toolbar UI Color
@@ -62,6 +64,8 @@ CKEditor's settings :
 - "config.shiftEnterMode"
 - "config.allowedContent"
 - "config.autoParagraph"
+
+![CKEditor Settings](https://raw.githubusercontent.com/xoopscube/ckeditor4/master/ckeditor-settings.png)    
 
 X-elFinder
 
