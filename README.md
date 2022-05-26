@@ -75,6 +75,7 @@ X-elFinder
 [CKEditor-CodeMirror-Plugin](https://github.com/w8tcha/CKEditor-CodeMirror-Plugin) by @w8tcha  
 Syntax Highlighting for the CKEditor (Source View and Source Dialog) with the CodeMirror Plugin
 
+![Plugin CodeMirror](https://raw.githubusercontent.com/xoopscube/ckeditor4/b9c72dc150ecb490bf835222468a38d9d5249eb6/codemirror.png)
 
 ## Parameters
  
