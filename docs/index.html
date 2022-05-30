@@ -6,11 +6,12 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>CKEditor Sample</title>
-	<script src="js/ckeditor.js"></script>
-	<script src="js/sample.js"></script>
-	<link rel="stylesheet" href="css/samples.css">
-	<link rel="stylesheet" href="toolbarconfigurator/lib/codemirror/neo.css">
+	<title>CKEditor4 for XOOPSCube XCL 2.3</title>
+	<script src="./js/ckeditor.js"></script>
+	<script src="./js/sample.js"></script>
+	<script src="./js/prism.js"></script>
+	<link rel="stylesheet" href="./css/samples.css">
+	<link rel="stylesheet" href="./js/prism.css">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<meta name="description" content="Try the latest sample of CKEditor 4 and learn more about customizing your WYSIWYG editor with endless possibilities.">
 </head>
@@ -19,12 +20,12 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 <nav class="navigation-a">
 	<div class="grid-container">
 		<ul class="navigation-a-left grid-width-70">
-			<li><a href="https://ckeditor.com/ckeditor-4/">Project Homepage</a></li>
-			<li><a href="https://github.com/ckeditor/ckeditor4/issues">I found a bug</a></li>
-			<li><a href="https://github.com/ckeditor/ckeditor4" class="icon-pos-right icon-navigation-a-github">Fork CKEditor on GitHub</a></li>
+			<li><a href="https://xoopscube.github.io/ckeditor4/">CKEditor4 for XCL</a></li>
+			<li><a href="https://github.com/xoopscube/ckeditor4/issues">Submit a bug</a></li>
+			<li><a href="https://github.com/xoopscube/ckeditor4" class="icon-pos-right icon-navigation-a-github">CKEditor4 on GitHub</a></li>
 		</ul>
 		<ul class="navigation-a-right grid-width-30">
-			<li><a href="https://ckeditor.com/blog/">CKEditor Blog</a></li>
+			<li><a href="https://github.com/xoopscube">XOOPSCube Project</a></li>
 		</ul>
 	</div>
 </nav>
@@ -45,69 +46,311 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 </header>
 
 <main>
+
 	<div class="adjoined-top">
 		<div class="grid-container">
 			<div class="content grid-width-100">
 				<h1>Congratulations!</h1>
 				<p>
-					If you can see CKEditor below, it means that the installation succeeded.
-					You can now try out your new editor version, see its features, and when you are ready to move on, check some of the <a href="#sample-customize">most useful resources</a> recommended below.
+					If you have installed XOOPSCube module CKEditor4 and you can see the editor below, it means that the installation succeeded.
+					You can now try out your customized editor version, see its features, and when you are ready to move on, check the
+					 <a href="#summary">required plugins and useful resources</a> recommended below.
 				</p>
 			</div>
 		</div>
 	</div>
+
 	<div class="adjoined-bottom">
 		<div class="grid-container">
 			<div class="grid-width-100">
 				<div id="editor">
 					<h1>Hello world!</h1>
-					<p>I'm an instance of <a href="https://ckeditor.com">CKEditor</a>.</p>
+					<p>I'm an instance of <a href="https://github.com/xoopscube/ckeditor4">CKEditor4 for XCL</a>.</p>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="grid-container">
+	<div class="grid-container" id="toc">
+
 		<div class="content grid-width-100">
-			<section id="sample-customize">
-				<h2>Customize Your Editor</h2>
-				<p>Modular build and <a href="https://ckeditor.com/docs/ckeditor4/latest/guide/dev_configuration.html">numerous configuration options</a> give you nearly endless possibilities to customize CKEditor. Replace the content of your <code><a href="../config.js">config.js</a></code> file with the following code and refresh this page (<strong>remember to clear the browser cache</strong>.html)!</p>
-		<pre class="cm-s-neo CodeMirror"><code><span style="padding-right: 0.1px;"><span class="cm-variable">CKEDITOR</span>.<span class="cm-property">editorConfig</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span>( <span class="cm-def">config</span> ) {</span>
-<span style="padding-right: 0.1px;"><span class="cm-tab">	</span><span class="cm-variable-2">config</span>.<span class="cm-property">language</span> <span class="cm-operator">=</span> <span class="cm-string">'es'</span>;</span>
-<span style="padding-right: 0.1px;"><span class="cm-tab">	</span><span class="cm-variable-2">config</span>.<span class="cm-property">uiColor</span> <span class="cm-operator">=</span> <span class="cm-string">'#F7B42C'</span>;</span>
-<span style="padding-right: 0.1px;"><span class="cm-tab">	</span><span class="cm-variable-2">config</span>.<span class="cm-property">height</span> <span class="cm-operator">=</span> <span class="cm-number">300</span>;</span>
-<span style="padding-right: 0.1px;"><span class="cm-tab">	</span><span class="cm-variable-2">config</span>.<span class="cm-property">toolbarCanCollapse</span> <span class="cm-operator">=</span> <span class="cm-atom">true</span>;</span>
-<span style="padding-right: 0.1px;">};</span></code></pre>
-			</section>
 
-			<section>
-				<h2>Toolbar Configuration</h2>
-				<p>If you want to reorder toolbar buttons or remove some of them, check <a href="toolbarconfigurator/index.html">this handy tool</a>!</p>
-			</section>
 
-			<section>
-				<h2>More Samples!</h2>
-				<p>Visit the <a href="https://ckeditor.com/docs/ckeditor4/latest/examples/index.html">CKEditor Examples</a> for a huge collection of samples showcasing editor features, with source code readily available to copy and use in your own implementation.</p>
-			</section>
+		<section id="summary">
+			<h2>CKEditor4 for XOOPSCube Web Application Platform</h2>
+			<p>CKEditor 4 is built from plugins, just like XOOPSCube is built from modules, which makes it easy to create a custom build tailored to your needs. 
+				Nevertheless, to make the initial trial and installation process easier, from the three pre-configured installation packages 
+				(Basic, Standard and Full), we have chose to customize the Full package for learning about the available features and setups.</p>
+			<p>Following the recommendation of the CKEditor Team, the installation packages are just predefined setups that aim to satisfy some common use cases. 
+				It is always recommended to build a custom CKEditor4 package adjusted to your production website special needs.</p>
+			
+			<h3>Table of contents</h3>
+			<ul>
+				<li><a href="#features">Features of module CKEditor4</a></li>
+				<li><a href="#control-panel">Control Panel Preferences</a></li>
+				<li><a href="#plugins">Required Plugins</a></li>
+				<li><a href="#custom">Custom Bundle Package</a></li>
+				<li><a href="#config">Custom CKEditor config.js</a></li>
+				<li><a href="#toolbar">Custom Toolbar Configuration</a></li>
+				<li><a href="#develop">Developer's Guide</a></li>
+				<li><a href="#api">CKEditor JavaScript API</a></li>
+			</ul>
 
-			<section>
-				<h2>Developer's Guide</h2>
-				<p>The most important resource for all developers working with CKEditor, integrating it with their websites and applications, and customizing to their needs. You can start from here:</p>
-				<ul>
-					<li><a href="https://ckeditor.com/docs/ckeditor4/latest/guide/dev_installation.html">Getting Started</a> &ndash; Explains most crucial editor concepts and practices as well as the installation process and integration with your website.</li>
-					<li><a href="https://ckeditor.com/docs/ckeditor4/latest/guide/dev_advanced_installation.html">Advanced Installation Concepts</a> &ndash; Describes how to upgrade, install additional components (plugins, skins.html), or create a custom build.</li>
-				</ul>
-					<p>When you have the basics sorted out, feel free to browse some more advanced sections like:</p>
-				<ul>
-					<li><a href="https://ckeditor.com/docs/ckeditor4/latest/features/index.html">Features Overview</a> &ndash; Descriptions and samples of various editor features.</li>
-					<li><a href="https://ckeditor.com/docs/ckeditor4/latest/guide/plugin_sdk_intro.html">Plugin SDK</a>, <a href="https://ckeditor.com/docs/ckeditor4/latest/guide/widget_sdk_intro.html">Widget SDK</a>, and <a href="https://ckeditor.com/docs/ckeditor4/latest/guide/skin_sdk_intro.html">Skin SDK</a> &ndash; Useful when you want to create your own editor components.</li>
-				</ul>
-			</section>
+		</section>
 
-			<section>
-				<h2>CKEditor JavaScript API</h2>
-				<p>CKEditor boasts a rich <a href="https://ckeditor.com/docs/ckeditor4/latest/api/index.html">JavaScript API</a> that you can use to adjust the editor to your needs and integrate it with your website or application.</p>
-			</section>
+
+		<section id="features">
+
+			<h2>Features of module CKEditor4</h2>
+			<p>The XOOPSCube module CKEditor4 is released by default with a customized Full package bundle and provides out of the box:</p>
+
+			<ul>
+				<li><b>Control Panel</b> preferences settings e.g. toolbars, user group permissions, ui color.</li>
+				<li><b>Localization</b>languages installed by default : English, French, Japanese, Portuguese.</li>
+				<li><b>Template</b> a Single File Component for frontend and backend.</li>
+				<li><b>Automatic change of editor</b> HTML or BBCode depending on modules and user group permissions.</li>
+				<li><b>Automatic switch of ToolBar</b> based on modules preferences and user group permissions.</li>
+				<li><b>BBCode editor</b> extends the CKEditor standard bbcode plugin</li>
+				<li><b>HTML editor</b> with custom Toolbar for each user group</li>
+				<li><b>Extra Plugins</b> customized CodeMirror, oEmbed, Paste (raw text, formatted or code).</li>
+				<li><b>PHP mode</b> for PHP code blocks without the <code>&lt;?php</code> opening tag.</li>
+				<li><b>Smarty mode</b> for Smarty Template Engine code blocks.</li>
+				<li><b>elFinder</b> open-source web file manager with cloud storage settings.</li>
+			</ul>
+
+			<div class="topage"><a href="#toc">↑</a></div>
+			
+		</section>
+
+
+		<section id="control-panel">
+		
+			<h2>CKEditor4 Control Panel Preferences</h2>
+			<p>The XOOPSCube module CKEditor4 Preferences panel allows you to
+				control most of the basic configuration options :<br>
+				custom toolbars, extra plugins and web file manager.</p>
+
+			<figure>
+
+				<img src="https://raw.githubusercontent.com/xoopscube/ckeditor4/master/ckeditor-settings.png" alt="CKEditor Preferences" style="max-width: 100%;">
+				
+				<figcaption>Partial screenshot of the module CKEditor4 Preferences settings.</figcaption>
+				
+			</figure>
+
+			<blockquote>
+				Toolbar UI Color
+				<br>"config.toolbar" for administrators (i.e webmaster)
+				<br>"config.toolbar" for special group (i.e. moderators)
+				<br>"config.toolbar" for registered users
+				<br>"config.toolbar" for guests (comments, forum)
+				<br>"config.extraPlugins"
+				<br>"config.customConfig"
+				<br>"config.enterMode"
+				<br>"config.shiftEnterMode"
+				<br>"config.allowedContent"
+				<br>"config.autoParagraph"
+			</blockquote>
+
+			<div class="tip">
+				The latest version of the module CKEditor4 and the Admin Theme can give you a more personalized web experience.
+			</div>
+
+			<div class="topage"><a href="#toc">↑</a></div>
+
+		</section>
+
+
+		<section id="plugins">
+
+			<h2>Required Plugins</h2>
+			<p>The following plugins are required for integration with X-elFinder web file manager to upload and browse images:</p>
+				
+			<ul>
+				<li><a href="https://ckeditor.com/cke4/addon/uploadimage" rel="noopener noreferrer nofollow" target="_blank">Upload Image</a></li>
+				<li><a href="https://ckeditor.com/cke4/addon/filebrowser" rel="noopener noreferrer nofollow" target="_blank">File Browser</a></li>
+				<li><a href="https://ckeditor.com/cke4/addon/smiley" rel="noopener noreferrer nofollow" target="_blank">Insert Smiley</a></li>
+				<li>CodeMirror customized for PHP and Smarty code blocks</li>
+				<li>xoopscode (extends bbcode)</li>
+			</ul>
+
+			<div class="tip">
+				The Full package contains plenty of plugins that can be enabled or disabled from config.js<br> 
+				Or use <code>/docs/build-config.js</code> to customize your package with the user-friendly online builder.
+			</div>
+
+			<div class="topage"><a href="#toc">↑</a></div>
+
+		</section>
+
+
+		<section id="custom">
+
+			<h3>Custom Bundle Package</h3>
+			<p>Modular build and numerous configuration options give you nearly endless possibilities to customize CKEditor.</p>
+			
+			<ol>
+				<li>Browse to <a href="https://ckeditor.com/cke4/builder" rel="noopener noreferrer nofollow" target="_blank">CKEditor online builder</a></li>
+				<li>Upload <code>/docs/build-config.js</code></li>
+				<li>Select your plugins and skin</li>
+				<li>Chose the Languages</li>
+				<li>Finalize and download</li>
+				<li>Replace <code>/html/modules/ckeditor4/ckeditor</code> with your package</li>
+			</ol>
+
+			<div class="alert">
+				Please note that the online builder does not include all <a href="#plugins">required and custom plugins</a>!<br>
+				Remember to backup the directory <code>/html/modules/ckeditor4/</code> before overwriting with new files. 
+			</div>
+
+			<div class="topage"><a href="#toc">↑</a></div>
+
+		</section>
+
+
+		<section id="config">
+
+			<h2>Custom CKEDITOR config.js</h2>
+
+			<p>The file <code>config.js</code> stores default configuration settings.<br>
+				Changes to this object are reflected in all editor instances, 
+				if not specified otherwise for a particular instance.</p>
+
+			<div class="tip">
+				It is recommended to create a file <code>custom.config.js</code> to replace the default <code>config.js</code>
+			</div>
+			
+
+			<h3>Custom Configuration</h3>
+
+			<ol>
+				<li>Create a new file <code>custom.config.js</code></li>
+				<li>Edit the content of your file with the following code</li>
+				<li>Change <strong>Custom config URL</strong> in the Control Panel</li>
+				<li>Reload your page (<strong>remember to clear the browser cache</strong>) !</li>
+			</ol>
+			
+	<pre><code class="lang-js">
+		CKEDITOR.editorConfig = function( config ) {
+			// Define changes to default configuration here. For example:
+			config.language = 'en';
+
+			// NOTE
+			// The following options can be set in Control Panel > CKEditor4 > Preferences
+		
+				// config.uiColor = '#AADC6E';
+		
+				// Pressing Enter will create a new &lt;P&gt; element.
+				// config.enterMode = CKEDITOR.ENTER_P;
+		
+				// Pressing Shift+Enter will create a new &lt;br&gt; element
+				// config.shiftEnterMode = CKEDITOR.ENTER_BR;
+
+			config.magicline_color = '#e43140';
+
+			// Language right to left
+			// config.language_list = ['ja:Japanese:rtl'];
+			config.language_list = [ 'en:English', 'fr:Français', 'ja:Japanese', 'pt:Portuguese' ];
+		};
+	</code></pre>
+
+
+			<h3>Custom config for Plugins</h3>
+			<p>You can bundle settings for each plugin, module and resources in your file <code>custom.config.js</code></p>
+
+
+	<pre><code class="lang-js">
+		CKEDITOR.editorConfig = function( config ) {
+
+			// Theme to use (codemirror / themes)
+			// Show line numbers
+			config.codemirror = {
+				theme: 'ayu-mirage',
+				lineNumbers: false,
+			};
+		
+			config.codeSnippet_languages = {
+				css: 'css',
+				html: 'html',
+				javascript: 'JavaScript',
+				php: 'PHP',
+				smarty: 'smarty',
+			};
+		};
+	</code></pre>
+
+
+			<figure>
+				<img src="https://raw.githubusercontent.com/xoopscube/ckeditor4/b9c72dc150ecb490bf835222468a38d9d5249eb6/codemirror.png" alt="Plugin CodeMirror" style="max-width: 100%;">
+				<figcaption>This is a screenshot of the customized CodeMirror Plugin.</figcaption>
+				
+			</figure>
+
+			
+			<div class="tip">
+				The module's built-in <strong>Help</strong> provides samples to implement custom configurations for each module and block editor!
+			</div>
+
+
+			<h3>More Samples!</h3>
+			<p>Visit the <a href="https://ckeditor.com/docs/ckeditor4/latest/examples/index.html" rel="noopener noreferrer nofollow" target="_blank">CKEditor Examples</a> 
+				for a huge collection of samples showcasing editor features, with source code readily available to copy 
+				and use in your own implementation. Read more about setting CKEditor configuration in the 
+				<a href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html" rel="noopener noreferrer nofollow" target="_blank">documentation</a></p>
+
+			<div class="topage"><a href="#toc">↑</a></div>
+
+		</section>
+			
+
+		<section id="toolbar">
+
+			<h3>Custom Toolbar Configuration</h3>
+			<p>If you want to reorder toolbar buttons or remove some of them, <br>
+				check <a href="toolbarconfigurator/index.html">the CKEditor handy tool</a> !</p>
+
+			<div class="topage"><a href="#toc">↑</a></div>
+
+		</section>
+
+
+		<section id="develop">
+
+			<h2>Developer's Guide</h2>
+			<p>The most important resource for all developers working with CKEditor, integrating it with their websites and applications, 
+				and customizing to their needs. You can start from here:</p>
+			<ul>
+				<li><a href="https://ckeditor.com/docs/ckeditor4/latest/guide/dev_installation.html" rel="noopener noreferrer nofollow" target="_blank">Getting Started</a><br>
+					&ndash; Explains most crucial editor concepts and practices as well as the installation process and integration with your website.</li>
+				<li><a href="https://ckeditor.com/docs/ckeditor4/latest/guide/dev_advanced_installation.html" rel="noopener noreferrer nofollow" target="_blank">Advanced Installation Concepts</a><br>
+					&ndash; Describes how to upgrade, install additional components (plugins, skins.html), or create a custom build.</li>
+			</ul>
+				<p>When you have the basics sorted out, feel free to browse some more advanced sections like:</p>
+			<ul>
+				<li><a href="https://ckeditor.com/docs/ckeditor4/latest/features/index.html" rel="noopener noreferrer nofollow" target="_blank">Features Overview</a><br>
+					&ndash; Descriptions and samples of various editor features.</li>
+				<li><a href="https://ckeditor.com/docs/ckeditor4/latest/guide/plugin_sdk_intro.html" rel="noopener noreferrer nofollow" target="_blank">Plugin SDK</a>, 
+					<a href="https://ckeditor.com/docs/ckeditor4/latest/guide/widget_sdk_intro.html" rel="noopener noreferrer nofollow" target="_blank">Widget SDK</a>, 
+					and <a href="https://ckeditor.com/docs/ckeditor4/latest/guide/skin_sdk_intro.html" rel="noopener noreferrer nofollow" target="_blank">Skin SDK</a><br>
+					&ndash; Useful when you want to create your own editor components.</li>
+			</ul>
+
+			<div class="topage"><a href="#toc">↑</a></div>
+
+		</section>
+
+
+		<section id="api">
+
+			<h2>CKEditor JavaScript API</h2>
+			<p>CKEditor boasts a rich <a href="https://ckeditor.com/docs/ckeditor4/latest/api/index.html" rel="noopener noreferrer nofollow" target="_blank">JavaScript API</a> 
+				that you can use to adjust the editor to your needs and integrate it with your website or application.</p>
+
+			<div class="topage"><a href="#toc">↑</a></div>
+
+		</section>
+
+
 		</div>
 	</div>
 </main>
@@ -122,8 +365,11 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 		</p>
 	</div>
 </footer>
+
 <script>
 	initSample();
+    // pre code syntax
+    Prism.highlightAll();
 </script>
 
 </body>
