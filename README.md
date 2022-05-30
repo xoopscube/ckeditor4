@@ -8,7 +8,12 @@
 
 ## ///// — CKEditor4 :: WYSIWYG editor + Web-based File manager
 
-![alt text](https://repository-images.githubusercontent.com/469831419/6032bf18-5c1e-4f27-aa2f-2b8e60f4e5)
+
+Test and customize here :    
+[https://xoopscube.github.io/ckeditor4/](https://xoopscube.github.io/ckeditor4/)    
+
+
+-----
 
 MODULE |  CKEditor
 ------------ | -------------
@@ -34,24 +39,36 @@ License      | elFinder is distributed under a 3-Clause BSD License.
 
 -----
 
-## Features
+## Overview
 
-The CKEditor4 module is released by default with the package bundle XCL 2.3.x and provides out of the box:  
+CKEditor 4 is built from plugins, just like XOOPSCube is built from modules, which makes it easy to create a custom build tailored to your needs. Nevertheless, to make the initial trial and installation process easier, from the three pre-configured installation packages (Basic, Standard and Full), we have chose to customize the Full package for learning about the available features and setups.
 
-Frontend template - Single File Component.    
-Automatic change of HTML editor and BBCode editor depending on modules and user group permissions.    
-Automatic ToolBar switching based on modules and user group permissions.   
+Following the recommendation of the CKEditor Team, the installation packages are just predefined setups that aim to satisfy some common use cases. It is always recommended to build a custom CKEditor4 package adjusted to your production website special needs.
 
-- BBCode editor extends the CKEditor standard bbcode plugin    
-- HTML editor with custom Toolbar for each user group    
+## Features of module CKEditor4
+
+The XOOPSCube module CKEditor4 is released by default with a customized Full package bundle and provides out of the box:
+
+- **Control Panel** preferences settings e.g. toolbars, user group permissions, ui color.
+- **Localization** languages installed by default : English, French, Japanese, Portuguese.
+- **Template** a Single File Component for frontend and backend.
+- **Automatic change of editor** HTML or BBCode depending on modules and user group permissions.
+- **Automatic switch of ToolBar** based on modules preferences and user group permissions.
+- **BBCode editor** extends the CKEditor standard bbcode plugin
+- **HTML editor** with custom Toolbar for each user group
+- **Extra Plugins** customized CodeMirror, oEmbed, Paste (raw text, formatted or code).
+- **PHP mode** for PHP code blocks without the <?php opening tag.
+- **Smarty mode** for Smarty Template Engine code blocks.
+- **elFinder** open-source web file manager with cloud storage settings.
 
 
 
 ## Control Panel Preferences
 
 
+![CKEditor Settings](https://raw.githubusercontent.com/xoopscube/ckeditor4/master/ckeditor-settings.png)    
 
-CKEditor's settings :   
+**CKEditor's settings**   
 
 - Toolbar UI Color
 - "config.toolbar" for administrators (i.e webmaster)
@@ -65,9 +82,7 @@ CKEditor's settings :
 - "config.allowedContent"
 - "config.autoParagraph"
 
-![CKEditor Settings](https://raw.githubusercontent.com/xoopscube/ckeditor4/master/ckeditor-settings.png)    
-
-X-elFinder
+**X-elFinder web file manager**
 
 - Set X-elFinder directory name for server browser.
 - Upload Target of Drag & Drop (X-elFinder)
