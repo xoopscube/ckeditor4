@@ -9,17 +9,25 @@ CKEDITOR.editorConfig = function( config ) {
 	config.language = 'en';
 
     // NOTE
+    // This option should not be changed unless when outputting a non-HTML data format like BBCode
+    // &nbsp; (non-breaking space)
+    // &gt; = >
+    // &lt; = <
+    // &amp;= &
+    config.basicEntities = false;
+
+    // NOTE
     // The following options can be set in Control Panel > CKEditor4 > Preferences
 
-    // config.uiColor = '#AADC6E';
+        // config.uiColor = '#AADC6E';
 
-    // Pressing Enter will create a new <P> element.
-    // config.enterMode = CKEDITOR.ENTER_P;
+        // Pressing Enter will create a new <P> element.
+        // config.enterMode = CKEDITOR.ENTER_P;
 
-    // Pressing Shift+Enter will create a new <br> element
-    // config.shiftEnterMode = CKEDITOR.ENTER_BR;
+        // Pressing Shift+Enter will create a new <br> element
+        // config.shiftEnterMode = CKEDITOR.ENTER_BR;
 
-    config.editorplaceholder = 'Start typing here…';
+    //config.editorplaceholder = 'Start typing here…';
 
     config.magicline_color = '#e43140';
 

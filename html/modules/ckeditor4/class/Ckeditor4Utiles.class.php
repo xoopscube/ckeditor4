@@ -121,7 +121,7 @@ class Ckeditor4_Utils
 		}
 
 		$script = '';
-		if ($params['editor'] !== 'plain' && $params['editor'] !== 'none') {
+		if ($params['editor'] !== 'plain' && $params['editor'] !== 'none' && $params['editor'] !== 'source') {
 
 			$editor = ($params['editor'] === 'html') ? 'html' : 'bbcode';
 			$conf = self::getModuleConfig();
@@ -197,7 +197,7 @@ class Ckeditor4_Utils
 
 				// theme contents.css
 				//$_themeCss = '/themes/' . $GLOBALS['xoopsConfig']['theme_set'] . '/ckeditor4/contents.css';
-				// @igamaster / theme_set / css /contents.css
+				// @igamaster /themes/ theme_set / css /contents.css
                 $_themeCss = '/themes/' . $GLOBALS['xoopsConfig']['theme_set'] . '/css/contents.css';
 				if (is_file(XOOPS_ROOT_PATH . $_themeCss)) {
 					$confCss[] = XOOPS_URL . $_themeCss;
@@ -211,7 +211,8 @@ class Ckeditor4_Utils
 			$config = array();
 			$modeconf = array(
 				'html' => array(),
-				'bbcode' => array()
+				'bbcode' => array(),
+                'source' => array()
 			);
 
 			$config['contentsCss'] = array();
@@ -336,7 +337,7 @@ EOD;
 
 			$config['customConfig'] = trim($conf['customConfig']);
 
-           $config['uiColor'] =  trim($conf['uiColor']);
+            $config['uiColor'] =  trim($conf['uiColor']);
 
 
 			if ($conf['allowedContent']) $config['allowedContent'] = true;
@@ -346,11 +347,28 @@ EOD;
 
 			self::setCKConfigSmiley($config);
 
-			$modeSource = 0;
-			$params['value'] = str_replace('&lt;!--ckeditor4FlgSource--&gt;', '', $params['value'], $modeSource);
-			if ($modeSource) $config['startupMode'] = 'source';
+			// $modeSource = 0;
+  //          $modeSource['contentsCss'] = array_merge($config['contentsCss'], $confCss);
+            $modeconf['source']['startupMode'] = 'source';
+            $modeconf['source']['enterMode'] = (int) $conf['enterMode'];
+            $modeconf['source']['shiftEnterMode'] = (int) $conf['shiftEnterMode'];
+            $modeconf['source']['disableAutoInline'] = true;
+            $modeconf['source']['extraPlugins'] = 'codemirror';
+            $modeconf['source']['removePlugins'] = 'sourcearea,sourcedialog';
+            if ($editor !== 'source' || !isset($config['toolbar'])) {
+                $modeconf['source']['toolbar'] = trim($conf['toolbar_bbcode']);
+            } else {
+                $modeconf['source']['toolbar'] = null;
+            }
+			$params['source'] = str_replace('&lt;!--ckeditor4FlgSource--&gt;', '', $params['value'], $modeSource);
+           // $params['source'] =
+            if ($modeconf['source']) {
+                $modeconf['source']['toolbar'] = null;
 
-			// set $modeconf as $config['_modeconf'] for delegate
+            }
+
+
+            // set $modeconf as $config['_modeconf'] for delegate
 			$config['_modeconf'] = $modeconf;
 
 			// lazy registering & call post build delegate
@@ -379,7 +397,7 @@ EOD;
             //$config_json = '{' . join($config_json, ',') . '}';
             $config_json = '{' . implode( ',', $config_json ) . '}';
 
-			foreach (array('html', 'bbcode') as $mode) {
+			foreach (array('html', 'bbcode', 'source') as $mode) {
 				$name = 'config_json_' . $mode;
 				$$name = array();
 				foreach ($modeconf[$mode] as $key => $val) {
@@ -495,19 +513,23 @@ EOD;
 				conf =	($(this).val() == "T")? $.extend(conf, {removePlugins:'smiley,'+conf.removePlugins}) : $.extend(conf, {removePlugins: conf.removePlugins.replace('smiley,', '')});
 				ck = CKEDITOR.replace("{$id}", conf);
 				ta.data("ckon_restore")();
+			} else {
+				conf =	($(this).val() == "P")? $.extend(conf, {removePlugins:'sourcearea,sourcedialog,'+conf.removePlugins}) : $.extend(conf, {removePlugins: conf.removePlugins.replace('sourcearea,sourcedialog,', '')});
+				ck = CKEDITOR.replace("{$id}", conf);
+				ta.data("ckon_restore")();
 			}
 		});
 	}
 EOD;
-			} else {
-				// custom switcher (by params)
-				$switcher = 'try{ ' . $params['switcher'] . ' } catch(e) { console && console.log(e); }';
-			}
-			$onload = ($params['onload']) ? 'try{ ' . $params['onload'] . ' } catch(e) { console && console.log(e); }' : '';
-			$onready = ($params['onready']) ? 'try{ ' . $params['onready'] . ' } catch(e) { console && console.log(e); }' : '';
+    } else {
+        // custom switcher (by params)
+        $switcher = 'try{ ' . $params['switcher'] . ' } catch(e) { console && console.log(e); }';
+    }
+    $onload = ($params['onload']) ? 'try{ ' . $params['onload'] . ' } catch(e) { console && console.log(e); }' : '';
+    $onready = ($params['onready']) ? 'try{ ' . $params['onready'] . ' } catch(e) { console && console.log(e); }' : '';
 
-			if (self::$cnt === 1) {
-				$script_1st = <<<EOD
+    if (self::$cnt === 1) {
+        $script_1st = <<<EOD
 
 	if (typeof xoopsInsertText != 'undefined') {
 		var xit = xoopsInsertText;
@@ -530,144 +552,144 @@ EOD;
 		}
 	}
 EOD;
-				if ($finder) {
-					$script_1st .= <<<EOD
+    if ($finder) {
+        $script_1st .= <<<EOD
 
-	getShowImgSize = function(url, callback) {
-		var ret = {};
-		$('<img alt=""/>').attr('src', url).on('load', function() {
-			var w = this.naturalWidth,
-				h = this.naturalHeight,
-				s = {$imgSize},
-				resized = false;
-			if (w > s || h > s) {
-				resized = true;
-				if (w > h) {
-					h = Math.round(h * (s / w));
-					w = s;
-				} else {
-					w = Math.round(w * (s / h));
-					h = s;
-				}
-			}
-			callback({width: w, height: h}, resized);
-		});
-	};
-	CKEDITOR.on('dialogDefinition', function (event) {
-		var editor = event.editor,
-			dialogDefinition = event.data.definition,
-			tabCount = dialogDefinition.contents.length,
-			uploadButton, submitButton, inputId,
-			// elFinder configs
-			elfDirHashMap = { // Dialog name / elFinder holder hash Map
-				image : '',
-				flash : '',
-				files : '',
-				link  : '',
-				fb    : '{$uploadTo}' // fallback target
-			},
-			customData = { ctoken: '{$_SESSION['XELFINDER_CTOKEN']}' }; // any custom data to post
-		for (var i = 0; i < tabCount; i++) {
-			try {
-				uploadButton = dialogDefinition.contents[i].get('upload');
-				submitButton = dialogDefinition.contents[i].get('uploadButton');
-			} catch(e) {
-				uploadButton = submitButton = null;
-			}
-			if (uploadButton !== null && submitButton !== null) {
-				uploadButton.hidden = false;
-				submitButton.hidden = false;
-				uploadButton.onChange = function() {
-					inputId = this.domId;
-				}
-				submitButton.onClick = function(e) {
-					var dialogName = CKEDITOR.dialog.getCurrent()._.name,
-						target = elfDirHashMap[dialogName]? elfDirHashMap[dialogName] : elfDirHashMap['fb'],
-						name   = $('#'+inputId),
-						btn    = $('#'+this.domId),
-						input  = name.find('iframe').contents().find('form').find('input:file'),
-						spinner= $('<img src="{$xoopsUrl}/common/elfinder/img/spinner-mini.gif" width="16" height="16" style="vertical-align:middle"/>'),
-						error  = function(err) {
-							alert(err.replace('<br>', '\\n'));
-						};
-					if (input.val() && ! btn.hasClass('cke_button_disabled')) {
-						var fd = new FormData();
-						fd.append('cmd', 'upload');
-						fd.append('overwrite', 0); // disable upload overwrite to make to increment file name
-						fd.append('target', target);
-						$.each(customData, function(key, val) {
-							fd.append(key, val);
-						});
-						fd.append('upload[]', input[0].files[0]);
-						btn.addClass('cke_button_disabled').append(spinner);
-						$.ajax({
-							url: editor.config.filebrowserUploadUrl,
-							type: 'POST',
-							data: fd,
-							processData: false,
-							contentType: false,
-							dataType: 'json'
-						})
-						.done(function( data ) {
-							if (data.added && data.added[0]) {
-								var url = data.added[0].url,
-									dialog = CKEDITOR.dialog.getCurrent(),
-									tabName = dialog._.currentTabId,
-									urlObj;
-								if (dialogName == 'image') {
-									urlObj = 'txtUrl';
-								} else if (dialogName == 'flash') {
-									urlObj = 'src';
-								} else if (dialogName == 'files' || dialogName == 'link') {
-									urlObj = 'url';
-								} else {
-									return;
-								}
-								dialog.selectPage('info');
-								dialog.setValueOf('info', urlObj, url);
-								if (dialogName == 'image' && tabName == 'info') {
-									getShowImgSize(url, function(s,r) {
-										if (r) {
-											try {
-												dialog.setValueOf('info', 'txtWidth', s.width);
-												dialog.setValueOf('info', 'txtHeight', s.height);
-												dialog.preview.$.style.width = s.width+'px';
-												dialog.preview.$.style.height = s.height+'px';
-												dialog.setValueOf('Link', 'txtUrl', url);
-												dialog.setValueOf('Link', 'cmbTarget', '_blank');
-											} catch(e) {}
-										}
-									});
-								}
-								if (dialogName == 'files' || dialogName == 'link') {
-									try {
-										dialog.setValueOf('info', 'linkDisplayText', data.added[0].name);
-									} catch(e) {}
-								}
-							} else {
-								error(data.error || data.warning || 'errUploadFile');
-							}
-						})
-						.fail(function() {
-							error('errUploadFile');
-						})
-						.always(function() {
-							input.val('');
-							spinner.remove();
-							btn.removeClass('cke_button_disabled');
-						});
-					}
-					return false;
-				}
-			}
-		}
-	});
+getShowImgSize = function(url, callback) {
+var ret = {};
+$('<img alt=""/>').attr('src', url).on('load', function() {
+var w = this.naturalWidth,
+    h = this.naturalHeight,
+    s = {$imgSize},
+    resized = false;
+if (w > s || h > s) {
+    resized = true;
+    if (w > h) {
+        h = Math.round(h * (s / w));
+        w = s;
+    } else {
+        w = Math.round(w * (s / h));
+        h = s;
+    }
+}
+callback({width: w, height: h}, resized);
+});
+};
+CKEDITOR.on('dialogDefinition', function (event) {
+var editor = event.editor,
+dialogDefinition = event.data.definition,
+tabCount = dialogDefinition.contents.length,
+uploadButton, submitButton, inputId,
+// elFinder configs
+elfDirHashMap = { // Dialog name / elFinder holder hash Map
+    image : '',
+    flash : '',
+    files : '',
+    link  : '',
+    fb    : '{$uploadTo}' // fallback target
+},
+customData = { ctoken: '{$_SESSION['XELFINDER_CTOKEN']}' }; // any custom data to post
+for (var i = 0; i < tabCount; i++) {
+try {
+    uploadButton = dialogDefinition.contents[i].get('upload');
+    submitButton = dialogDefinition.contents[i].get('uploadButton');
+} catch(e) {
+    uploadButton = submitButton = null;
+}
+if (uploadButton !== null && submitButton !== null) {
+    uploadButton.hidden = false;
+    submitButton.hidden = false;
+    uploadButton.onChange = function() {
+        inputId = this.domId;
+    }
+    submitButton.onClick = function(e) {
+        var dialogName = CKEDITOR.dialog.getCurrent()._.name,
+            target = elfDirHashMap[dialogName]? elfDirHashMap[dialogName] : elfDirHashMap['fb'],
+            name   = $('#'+inputId),
+            btn    = $('#'+this.domId),
+            input  = name.find('iframe').contents().find('form').find('input:file'),
+            spinner= $('<img src="{$xoopsUrl}/common/elfinder/img/spinner-mini.gif" width="16" height="16" style="vertical-align:middle"/>'),
+            error  = function(err) {
+                alert(err.replace('<br>', '\\n'));
+            };
+        if (input.val() && ! btn.hasClass('cke_button_disabled')) {
+            var fd = new FormData();
+            fd.append('cmd', 'upload');
+            fd.append('overwrite', 0); // disable upload overwrite to make to increment file name
+            fd.append('target', target);
+            $.each(customData, function(key, val) {
+                fd.append(key, val);
+            });
+            fd.append('upload[]', input[0].files[0]);
+            btn.addClass('cke_button_disabled').append(spinner);
+            $.ajax({
+                url: editor.config.filebrowserUploadUrl,
+                type: 'POST',
+                data: fd,
+                processData: false,
+                contentType: false,
+                dataType: 'json'
+            })
+            .done(function( data ) {
+                if (data.added && data.added[0]) {
+                    var url = data.added[0].url,
+                        dialog = CKEDITOR.dialog.getCurrent(),
+                        tabName = dialog._.currentTabId,
+                        urlObj;
+                    if (dialogName == 'image') {
+                        urlObj = 'txtUrl';
+                    } else if (dialogName == 'flash') {
+                        urlObj = 'src';
+                    } else if (dialogName == 'files' || dialogName == 'link') {
+                        urlObj = 'url';
+                    } else {
+                        return;
+                    }
+                    dialog.selectPage('info');
+                    dialog.setValueOf('info', urlObj, url);
+                    if (dialogName == 'image' && tabName == 'info') {
+                        getShowImgSize(url, function(s,r) {
+                            if (r) {
+                                try {
+                                    dialog.setValueOf('info', 'txtWidth', s.width);
+                                    dialog.setValueOf('info', 'txtHeight', s.height);
+                                    dialog.preview.$.style.width = s.width+'px';
+                                    dialog.preview.$.style.height = s.height+'px';
+                                    dialog.setValueOf('Link', 'txtUrl', url);
+                                    dialog.setValueOf('Link', 'cmbTarget', '_blank');
+                                } catch(e) {}
+                            }
+                        });
+                    }
+                    if (dialogName == 'files' || dialogName == 'link') {
+                        try {
+                            dialog.setValueOf('info', 'linkDisplayText', data.added[0].name);
+                        } catch(e) {}
+                    }
+                } else {
+                    error(data.error || data.warning || 'errUploadFile');
+                }
+            })
+            .fail(function() {
+                error('errUploadFile');
+            })
+            .always(function() {
+                input.val('');
+                spinner.remove();
+                btn.removeClass('cke_button_disabled');
+            });
+        }
+        return false;
+    }
+}
+}
+});
 EOD;
-				}
-			} else {
-				$script_1st = '';
-			}
-			$script = <<<EOD
+    }
+    } else {
+        $script_1st = '';
+    }
+    $script = <<<EOD
 
 (function(){
 	{$onload}{$script_1st}
