@@ -1,5 +1,5 @@
 ﻿/**
- * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license/
  */
 
@@ -13,10 +13,10 @@
  * (1) https://ckeditor.com/cke4/builder
  *     Visit online builder to build CKEditor from scratch.
  *
- * (2) https://ckeditor.com/cke4/builder/57befcfdac8c8bb9ce9e3080404d9144
+ * (2) https://ckeditor.com/cke4/builder/069129c9382503296cffba6b1b154b95
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
- * (3) https://ckeditor.com/cke4/builder/download/57befcfdac8c8bb9ce9e3080404d9144
+ * (3) https://ckeditor.com/cke4/builder/download/069129c9382503296cffba6b1b154b95
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -55,28 +55,25 @@ var CKBUILDER_CONFIG = {
 	],
 	plugins : {
 		'a11yhelp' : 1,
+		'autocomplete' : 1,
 		'autoembed' : 1,
 		'autolink' : 1,
 		'basicstyles' : 1,
 		'blockquote' : 1,
 		'clipboard' : 1,
-		'codemirror' : 1,
 		'colorbutton' : 1,
 		'colordialog' : 1,
 		'contextmenu' : 1,
 		'copyformatting' : 1,
 		'dialogadvtab' : 1,
 		'div' : 1,
-		'editorplaceholder' : 1,
 		'elementspath' : 1,
-		'embedsemantic' : 1,
 		'enterkey' : 1,
 		'entities' : 1,
 		'filebrowser' : 1,
 		'find' : 1,
 		'font' : 1,
 		'format' : 1,
-		'forms' : 1,
 		'horizontalrule' : 1,
 		'htmlwriter' : 1,
 		'iframe' : 1,
@@ -91,6 +88,7 @@ var CKBUILDER_CONFIG = {
 		'liststyle' : 1,
 		'magicline' : 1,
 		'maximize' : 1,
+		'openlink' : 1,
 		'pastetext' : 1,
 		'removeformat' : 1,
 		'resize' : 1,
@@ -100,8 +98,10 @@ var CKBUILDER_CONFIG = {
 		'smiley' : 1,
 		'sourcearea' : 1,
 		'stylescombo' : 1,
+		'stylesheetparser' : 1,
 		'tab' : 1,
 		'table' : 1,
+		'tableresize' : 1,
 		'tableselection' : 1,
 		'tabletools' : 1,
 		'templates' : 1,
