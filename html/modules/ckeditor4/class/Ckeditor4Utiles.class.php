@@ -232,8 +232,7 @@ class Ckeditor4_Utils
 			if (!is_null($params['toolbar'])) {
 				$config['toolbar'] = $params['toolbar'];
 			}
-
-
+            // Since XCL 2.3.x
             if (!is_null($params['uiColor'])) {
 				$config['uiColor'] = $params['uiColor'];
 			 }
@@ -337,6 +336,7 @@ EOD;
 
 			$config['customConfig'] = trim($conf['customConfig']);
 
+            // Since XCL 2.3.x
             $config['uiColor'] =  trim($conf['uiColor']);
 
 
@@ -347,8 +347,7 @@ EOD;
 
 			self::setCKConfigSmiley($config);
 
-			// $modeSource = 0;
-  //          $modeSource['contentsCss'] = array_merge($config['contentsCss'], $confCss);
+            // Since XCL 2.3.x @gigamaster added config_php.js for block type PHP
             $modeconf['source']['startupMode'] = 'source';
             $modeconf['source']['enterMode'] = (int) $conf['enterMode'];
             $modeconf['source']['shiftEnterMode'] = (int) $conf['shiftEnterMode'];
@@ -501,7 +500,7 @@ EOD;
 		var e = ta.data("editor");
 		set("br", ((e == "bbcode")? true : ((e == "html")? false : null)), false);
 	});
-	// custom block editor (legacy or alysys)
+	// custom block editor (legacy or altsys)
 	var html_s = ta.closest("form").find("select[name='c_type'],[name='ctypes[0]']");
 	if (html_s && html_s.length == 1) {
 		html_s.change(function(){
@@ -741,7 +740,7 @@ EOD;
 	});
 	{$switcher}
 })();
-// @gigamaster added XD v231 - Dialog for copy/paste
+// Since XCL 2.3.x @gigamaster added Dialog for copy/paste
 CKEDITOR.on("instanceReady", function(event) {
     event.editor.on("beforeCommandExec", function(event) {
         // Show the paste dialog for the paste buttons and right-click paste
