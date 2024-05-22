@@ -32,13 +32,17 @@ License      | elFinder is distributed under a 3-Clause BSD License.
 
 
 
-          Apache, Nginx, etc. PHP 7.2.x
-          MySQL 5.6, MariaDB  InnoDB utf8 / utf8mb4
-          XCL version 2.3.+
+          Apache, Nginx, etc. PHP 8.x.x
+          MySQL 5.7, MariaDB  InnoDB utf8 / utf8mb4
+          XCL version 2.4.0
 
 
 
 -----
+
+## EOL
+
+CKEditor 4 is now end-of-life software. Security patches are only released for CKEditor 4 LTS, which is available exclusively in the Extended Support Model Package.
 
 ## Overview
 

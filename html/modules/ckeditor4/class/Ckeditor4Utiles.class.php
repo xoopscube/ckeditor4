@@ -2,10 +2,10 @@
 /**
  * CKEditor4 module for XCL
  * @package    CKEditor4
- * @version    2.3.1
+ * @version    2.4.0
  * @author     Other authors Nuno Luciano (aka gigamaster), 2020, XCL PHP7
  * @author     Naoki Sawada (aka nao-pon) <https://xoops.hypweb.net/>
- * @copyright  (c) 2005-2023 The XOOPSCube Project
+ * @copyright  (c) 2005-2024 The XOOPSCube Project
  * @license    GPL 2.0
  */
 
@@ -237,7 +237,6 @@ class Ckeditor4_Utils
 				$config['uiColor'] = $params['uiColor'];
 			 }
 
-
 			$config['xoopscodeXoopsUrl'] = XOOPS_URL . '/';
 
 			if ($finder) {
@@ -339,7 +338,6 @@ EOD;
             // Since XCL 2.3.x
             $config['uiColor'] =  trim($conf['uiColor']);
 
-
 			if ($conf['allowedContent']) $config['allowedContent'] = true;
 			$config['autoParagraph'] = (bool) $conf['autoParagraph'];
 
@@ -363,9 +361,7 @@ EOD;
            // $params['source'] =
             if ($modeconf['source']) {
                 $modeconf['source']['toolbar'] = null;
-
             }
-
 
             // set $modeconf as $config['_modeconf'] for delegate
 			$config['_modeconf'] = $modeconf;

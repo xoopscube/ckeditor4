@@ -1,20 +1,23 @@
 /**
- * CKEditor configuration for XCL 2.3.x
- * Date : 20-03-2023 @gigamaster
+ * CKEditor configuration for XCL 2.4.0
+ * Date : 20-04-2024 @gigamaster
  * 
  * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see https://ckeditor.com/legal/ckeditor-oss-license
  */
 
 CKEDITOR.editorConfig = function( config ) {
+
     config.docType = '<!DOCTYPE html>';
 	// Define changes to default configuration here. For example:
 	config.language = 'en';
 
     config.width = '100%';     // Editor dimension
-    config.height = '340px';   // Use pixels or CSS unit (percent)
+    config.height = '280px';   // Use pixels or CSS unit (percent)
+    
+    //var uitheme = JSON.parse(localStorage.getItem('uicolor'));
+    // config.uiColor = localStorage.getItem('uicolor');
 
-    config.uiColor = localStorage.getItem("uicolor");
     // NOTE
     // This option should not be changed unless when outputting a non-HTML data format like BBCode
     // &nbsp; (non-breaking space)
@@ -22,8 +25,19 @@ CKEDITOR.editorConfig = function( config ) {
     // &lt; = <
     // &amp;= &
     config.basicEntities = false;
+
+    // codesnnipet plugin 
+    // Changing Highlighter Theme
+    config.codeSnippet_theme = 'github-dark';
+
+    // oEmbed Plugin
+    config.oembed_maxWidth = '560';
+    config.oembed_maxHeight = '315';
+    config.oembed_WrapperClass = 'embededContent';
+
     // Minimize toolbar
     config.toolbarCanCollapse = true;
+
     // NOTE
     // The following options can be set in Control Panel > CKEditor4 > Preferences
 
@@ -36,28 +50,24 @@ CKEDITOR.editorConfig = function( config ) {
         // config.shiftEnterMode = CKEDITOR.ENTER_BR;
 
     //config.editorplaceholder = 'Start typing here…';
+    
 
-    config.magicline_color = '#e43140';
+    config.magicline_color = '#e44140;';
 
-    config.toolbarGroups = [
-        { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
-        { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-        { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
-        { name: 'tools', groups: [ 'tools' ] },
-        { name: 'forms', groups: [ 'forms' ] },
-        '/',
-        { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-        { name: 'links', groups: [ 'links' ] },
-        { name: 'insert', groups: [ 'insert' ] },
+	config.toolbarGroups = [
+		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+		{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+		{ name: 'tools', groups: [ 'tools' ] },
+		'/',
+		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+		{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+		{ name: 'links', groups: [ 'links' ] },
+		{ name: 'insert', groups: [ 'insert' ] },
+		{ name: 'styles', groups: [ 'styles' ] },
         { name: 'colors', groups: [ 'colors' ] },
-        '/',
-        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-        { name: 'styles', groups: [ 'styles' ] },
-        { name: 'others', groups: [ 'others' ] },
-        { name: 'about', groups: [ 'about' ] }
-    ];
-
-
+		{ name: 'others', groups: [ 'others' ] }
+	];
     // 'la:Language:rtl' = right to left
     // config.language_list = ['ja:Japanese:rtl'];
     config.language_list = [ 'en:English', 'fr:Français', 'ja:Japanese', 'pt:Portuguese' ];
