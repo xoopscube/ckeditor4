@@ -20,7 +20,7 @@ MODULE |  CKEditor4
 ------------ | -------------
 Description  | Battle-tested WYSIWYG editor with X-elFinder web-based file manager running on JavaScript + PHP.
 Render Engine| Smarty v2 and XCube Layout
-Version      | 4.20.2
+Version      | 4.22.1
 Author       | @nao-pon Naoki Sawada
 Maintainer   | Update @gigamaster Nuno Luciano (XCL7)
 Copyright    | 2005-2023 Authors
